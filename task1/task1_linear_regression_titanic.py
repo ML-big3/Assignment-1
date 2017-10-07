@@ -7,6 +7,7 @@ Linear Regression
 
 """
 
+import config
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder
@@ -16,7 +17,7 @@ import matplotlib.pyplot as plt
 
 
 # Importing the dataset
-dataset = pd.read_csv('titanic dataset.csv')
+dataset = pd.read_csv(config.TITANIC_DS)
 y_dataframe = dataset[['Survived']]
 X__dataframe = dataset[['Pclass','Sex','Age','SibSp','Parch','Fare']]
 
