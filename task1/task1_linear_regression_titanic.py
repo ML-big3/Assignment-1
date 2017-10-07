@@ -37,16 +37,8 @@ X[:,[2]] = imputer.transform(X[:,2].reshape(-1,1))
 labelencoder_X = LabelEncoder()
 X[:, 1] = labelencoder_X.fit_transform(X[:, 1])
 
-
-# Splitting the dataset into the Training set and Test set
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.2, random_state = 0)
-
-regressor = LinearRegression()
-regressor.fit(X_train, y_train)
-
-y_pred = regressor.predict(X_test)
-
-regressor.score(X_test, y_test)
+# Perform the regresion
+training.linear_regression(X,y)
 
 
 
