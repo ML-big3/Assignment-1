@@ -8,11 +8,11 @@ Linear Regression
 """
 
 import config
+import training
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LinearRegression
-from sklearn.cross_validation import train_test_split
 import matplotlib.pyplot as plt
 
 
@@ -38,7 +38,7 @@ labelencoder_X = LabelEncoder()
 X[:, 1] = labelencoder_X.fit_transform(X[:, 1])
 
 # Perform the regresion
-training.linear_regression(X,y)
+training.linear_regression(X, y, config.CHUNKS)
 
 
 

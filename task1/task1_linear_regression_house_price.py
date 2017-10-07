@@ -14,20 +14,21 @@ import pandas as pd
 import seaborn as sns
 from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import LinearRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn import metrics
 from sklearn.cross_validation import KFold
-import numpy as np
+
 
 house_dataset = pd.read_csv(config.HOUSE_DS)
-feature_cols = ["MSSubClass", "LotArea", "OverallQual", "OverallCond", "YearBuilt", 
-                "YearRemodAdd", "MasVnrArea", "BsmtFinSF1", "BsmtUnfSF", "TotalBsmtSF"
-                "1stFlrSF", "2ndFlrSF", "GrLivArea", "BsmtFullBath", "BsmtHalfBath"
-                "FullBath", "HalfBath", "BedroomAbvGr", "KitchenAbvGr", "TotRmsAbvGrd"
-                "Fireplaces", "GarageYrBlt", "GarageCars", "GarageArea", "WoodDeckSF"
-                "OpenPorchSF", "EnclosedPorch", "MoSold", "YrSold" ]
+
+#feature_cols = ["MSSubClass", "LotArea", "OverallQual", "OverallCond", "YearBuilt", 
+#                "YearRemodAdd", "MasVnrArea", "BsmtFinSF1", "BsmtUnfSF", "TotalBsmtSF",
+#                "1stFlrSF", "2ndFlrSF", "GrLivArea", "BsmtFullBath", "BsmtHalfBath",
+#                "FullBath", "HalfBath", "BedroomAbvGr", "KitchenAbvGr", "TotRmsAbvGrd",
+#                "Fireplaces", "GarageYrBlt", "GarageCars", "GarageArea", "WoodDeckSF",
+#                "OpenPorchSF", "EnclosedPorch", "MoSold", "YrSold" ]
+feature_cols = ["MSSubClass", "LotArea", "OverallQual", "OverallCond", "YearBuilt"]
 result = 'SalePrice'
 
+#
 X = house_dataset[feature_cols]
 y = house_dataset[result]
-training.linear_regression(X,y)
+training.linear_regression(X,y, config.CHUNKS)
