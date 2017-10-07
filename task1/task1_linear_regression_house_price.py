@@ -29,6 +29,8 @@ feature_cols = ["MSSubClass", "LotArea", "OverallQual", "OverallCond", "YearBuil
 result = 'SalePrice'
 
 #
-X = house_dataset[feature_cols]
-y = house_dataset[result]
+X = house_dataset[feature_cols].values
+y = house_dataset[result].values
+
+# Perform the regresion
 training.linear_regression(X,y, config.CHUNKS)
