@@ -21,3 +21,13 @@ def linear_regression(X_dataframe, y_dataframe, chunks):
             regressor.fit(X_train, y_train)
             y_pred = regressor.predict(X_test)
             print(np.sqrt(metrics.mean_squared_error(y_test, y_pred)))
+
+
+def other_algorithm1:
+	#code here
+
+def other_algorithm2:
+	#code here
+
+def other_algorithm3:
+	#code here

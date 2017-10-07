@@ -34,3 +34,5 @@ y = house_dataset[result].values
 
 # Perform the regresion
 training.linear_regression(X,y, config.CHUNKS)
+training.other_algorithm(X,y, config.CHUNKS)
+
