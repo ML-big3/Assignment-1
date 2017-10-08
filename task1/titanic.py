@@ -12,16 +12,11 @@ import training
 import pandas as pd
 from sklearn.preprocessing import Imputer
 from sklearn.preprocessing import LabelEncoder
-from sklearn.linear_model import LinearRegression
-import matplotlib.pyplot as plt
-
 
 # Importing the dataset
 dataset = pd.read_csv(config.TITANIC_DS)
-y_dataframe = dataset[['Survived']]
+y_dataframe = dataset['Survived']
 X__dataframe = dataset[['Pclass','Sex','Age','SibSp','Parch','Fare']]
-
-# Preprocessing
 
 # extracting the data as an array
 y = y_dataframe.values
@@ -38,7 +33,8 @@ labelencoder_X = LabelEncoder()
 X[:, 1] = labelencoder_X.fit_transform(X[:, 1])
 
 # Perform the regresion
-training.linear_regression(X, y, config.CHUNKS)
+training.linear_regression(X, y)
+training.svr(X, y)
 
 
 

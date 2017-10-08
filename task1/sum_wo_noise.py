@@ -17,17 +17,15 @@ Implementing Linear Regression on the SUM data without noise
 
 import config
 import pandas as pd
-from sklearn.preprocessing import Imputer
-from sklearn.preprocessing import LabelEncoder
-from sklearn.cross_validation import train_test_split
+import training
 
 # Importing the dataset
 dataset = pd.read_csv(filepath_or_buffer = config.SUM_WO_NOISE_DS, sep = ';')
-y = dataset[['Noisy Target']].values
+y = dataset['Noisy Target'].values
 X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 6',
                         'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']].values
-
              
 # Perform the regresion
-training.linear_regression(X,y, config.CHUNKS)
+training.linear_regression(X, y)
+training.svr(X, y)
              
