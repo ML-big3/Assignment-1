@@ -33,9 +33,10 @@ labelencoder_X = LabelEncoder()
 X[:, 1] = labelencoder_X.fit_transform(X[:, 1])
 
 # Perform the regresion
-training.linear_regression(X, y)
-training.svr(X, y)
+# training.linear_regression(X, y)
+# training.svr(X, y)
 training.logistic_regression(X, y)
+training.svc(X, y)
 
 
 

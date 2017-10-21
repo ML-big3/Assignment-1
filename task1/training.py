@@ -51,5 +51,13 @@ def logistic_regression(X_dataframe, y_dataframe):
             lr.fit(X_train, y_train)
             print(lr.score(X_test, y_test))
 
-#def other_algorithm3:
-	#code here
+def svc(X_dataframe, y_dataframe):
+    print("SVC")
+    for i in CHUNKS:
+        if X_dataframe.size >= i:
+            X_train, X_test, y_train, y_test = train_test_split(X_dataframe[:i], y_dataframe[:i], test_size = 0.3, random_state = 0)
+            clf = svm.SVC()
+
+            #Mean accuracy on the test data and labels.
+            clf.fit(X_train, y_train)
+            print(clf.score(X_test, y_test))
