@@ -28,4 +28,5 @@ X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 6',
 # Perform the regresion
 training.linear_regression(X, y)
 training.svr(X, y)
+training.logistic_regression(X, y)
              
