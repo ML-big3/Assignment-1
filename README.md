@@ -1,9 +1,9 @@
 # Assignment-1
 
-### Folder Tree
+### Algorithms
 	+ Task1
-		+ Linear Linear
-		+ SVM
-		+ Logistic Regression
-		+ One Algorithm From Ashish
+		+ Linear Linear Regression(RMSE and R2 metrics)
+		+ Decision Tree Regression(RMSE and R2 metrics)
+		+ Logistic Regression(Accuracy and F1 metrics)
+		+ KNN(Accuracy and F1 metrics)
 	+ Task2
