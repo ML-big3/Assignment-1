@@ -1,86 +1,50 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Oct  7 14:34:27 2017
-
-@author: xu
-
-#Assignment-1 Task-1
-"""
-# CHUNKS = [10]
-CHUNKS = [100, 500, 1000, 5000, 10000]
-# CHUNKS = [5000, 10000, 50000, 100000]
-# CHUNKS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000]
-from sklearn.cross_validation import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import LogisticRegression
-import numpy as np
-from sklearn import metrics
-from sklearn import svm
-
-# Linear Regression Algorithm
-def linear_regression(X_dataframe, y_dataframe):
-    print("LinearRegression")
-    for i in CHUNKS:
-        rmse = 0
-        r2 = 0
-        if X_dataframe.size >= i:
-            X = X_dataframe[:i]
-            y = y_dataframe[:i]
-            regressor = LinearRegression()
-            kf = KFold(n_splits=10)
-            for train_index, test_index in kf.split(X):
-                X_train, X_test = X[train_index], X[test_index]
-                y_train, y_test = y[train_index], y[test_index]
-                regressor.fit(X_train, y_train)
-                y_pred = regressor.predict(X_test)
-                rmse += np.sqrt(metrics.mean_squared_error(y_test, y_pred))
-                r2 += metrics.r2_score(y_test, y_pred)
-            print(i, rmse/10)
-            print(i, r2/10)
+import config
+import training
+import pandas as pd
 
 
-# Support Vector Regression Algorithm
-def svr(X_dataframe, y_dataframe):
-    print("SVR")
-    for i in CHUNKS:
-        rmse = 0
-        r2 = 0
-        if X_dataframe.size >= i:
-            X = X_dataframe[:i]
-            y = y_dataframe[:i]
-            clf = svm.SVR()
-            kf = KFold(n_splits=10)
-            for train_index, test_index in kf.split(X):
-                X_train, X_test = X[train_index], X[test_index]
-                y_train, y_test = y[train_index], y[test_index]
-                clf.fit(X_train, y_train)
-                y_pred = clf.predict(X_test)
-                rmse += np.sqrt(metrics.mean_squared_error(y_test, y_pred))
-                r2 += metrics.r2_score(y_test, y_pred)
-            print(i, rmse/10)
-            print(i, r2/10)
+def strat_training(X, y):
+    training.linear_regression(X, y)
+    training.svr(X, y)
+    training.logistic_regression(X, y)
+    training.knn(X, y)
 
-def logistic_regression(X_dataframe, y_dataframe):
-    print("LogisticRegression")
-    for i in CHUNKS:
-        if X_dataframe.size >= i:
-            X_train, X_test, y_train, y_test = train_test_split(X_dataframe[:i], y_dataframe[:i], test_size = 0.3, random_state = 0)
-            lr = LogisticRegression()
-            lr.fit(X_train, y_train)
+# training the Sum Without Noise dataset
+def train_sum_without_noise_data():
+    dataset = pd.read_csv(config.SUM_WO_NOISE_DS, sep = ';')
+    X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 6',
+                        'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']].values
+    y = dataset['Target'].values
+    strat_training(X, y)
 
-            #Mean accuracy on the test data and labels.
-            print(lr.score(X_test, y_test))
+# training the Sum With Noise dataset
+def train_sum_with_noise_data():
+    dataset = pd.read_csv(config.SUM_WI_NOISE_DS, sep = ';')
+    X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 5 (meaningless but please still use it)','Feature 6',
+                        'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']].values
+    y = dataset['Noisy Target'].values
+    strat_training(X, y)
 
-def svc(X_dataframe, y_dataframe):
-    print("SVC")
-    for i in CHUNKS:
-        if X_dataframe.size >= i:
-            X_train, X_test, y_train, y_test = train_test_split(X_dataframe[:i], y_dataframe[:i], test_size = 0.3, random_state = 0)
-            clf = svm.SVC()
-            clf.fit(X_train, y_train)
+# training the Fashion Mnist dataset
+def train_fashion_mnist_data():
+    data_train = pd.read_csv(config.FASHION_MNIST_TRAIN, sep=",")
+    features = []
+    for i in range(1, 785):
+        features.append("pixel" + str(i))
 
-            #Mean accuracy on the test data and labels.
-            print(clf.score(X_test, y_test))
+    X = data_train[features].values
+    y = data_train["label"].values
+    strat_training(X, y)
+
+# training the Skin_Non_Skin dataset
+def train_skin_data():
+    data = pd.read_csv(config.SKIN_NO_SKIN, sep="\t", names=["a", "b", "c", "d"])
+    X = data[["a", "b", "c"]].values
+    y = data["d"].values
+    X, y = shuffle(X, y)
+    strat_training(X, y)
+
+train_sum_without_noise_data
+train_sum_with_noise_data
+train_fashion_mnist_data
+train_skin_data
