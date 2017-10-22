@@ -7,20 +7,17 @@ Created on Fri Oct  7 14:34:27 2017
 
 #Assignment-1 Task-1
 """
-# CHUNKS = [10]
-CHUNKS = [100, 500, 1000, 5000, 10000]
-# CHUNKS = [5000, 10000, 50000, 100000]
-# CHUNKS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000]
-from sklearn.cross_validation import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-from sklearn.linear_model import LinearRegression
-from sklearn.linear_model import LogisticRegression
+# CHUNKS = [100, 500, 1000, 5000, 10000]
+CHUNKS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000]
 import numpy as np
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn import metrics
 from sklearn import svm
-
+from sklearn import metrics
+from sklearn.model_selection import KFold
+from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LinearRegression
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn.cross_validation import train_test_split
 # Linear Regression Algorithm
 def linear_regression(X_dataframe, y_dataframe):
     print("LinearRegression")
@@ -85,7 +82,7 @@ def svc(X_dataframe, y_dataframe):
             #Mean accuracy on the test data and labels.
             print(clf.score(X_test, y_test))
 
-def neighbors(X_dataframe, y_dataframe):
+def knn(X_dataframe, y_dataframe):
     print("KNN")
     for i in CHUNKS:
         if X_dataframe.shape[0] >= i:
@@ -96,3 +93,14 @@ def neighbors(X_dataframe, y_dataframe):
 
             #Mean accuracy on the test data and labels.
             print(clf.score(X_test, y_test))
+
+def decision_tree_regression(X_dataframe, y_dataframe):
+    print("Decision Tree Regression")
+    for i in CHUNKS:
+        if X_dataframe.shape[0] >= i:
+            X_train, X_test, y_train, y_test = train_test_split(X_dataframe[:i], y_dataframe[:i], test_size = 0.3, random_state = 0)
+            clf = DecisionTreeRegressor(max_depth=4)
+            clf.fit(X_train, y_train)
+            #Mean accuracy on the test data and labels.
+            print(clf.score(X_test, y_test))
+
