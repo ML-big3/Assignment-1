@@ -8,7 +8,8 @@ Created on Fri Oct  7 14:34:27 2017
 #Assignment-1 Task-1
 """
 CHUNKS = [100, 500, 1000, 5000, 10000]
-# CHUNKS = [1000, 5000, 10000]
+#CHUNKS = [100]
+#CHUNKS = [1000, 5000, 10000]
 #CHUNKS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000]
 import numpy as np
 from sklearn import svm
@@ -81,13 +82,27 @@ def logistic_regression(X_dataframe, y_dataframe):
             #Accuracy metric
             print("accuracy ", cross_val_score(clf, X, y, cv=10, scoring="accuracy").mean())
 
+            precision_score = 0
+            kf = KFold(n_splits=10)
+            for train_index, test_index in kf.split(X):
+                X_train, X_test = X[train_index], X[test_index]
+                y_train, y_test = y[train_index], y[test_index]
+                clf.fit(X_train, y_train)
+                y_pred = clf.predict(X_test)
+                y_label = list(set(y_test))
+                if len(y_label) > 2:
+                    precision_score += metrics.precision_score(y_test, y_pred, labels=y_label, average='micro')
+                else:
+                    precision_score += metrics.precision_score(y_test, y_pred)
+            print("precision_score", precision_score/10)
+
             #f1 metric
-            y_label = list(set(y))
-            if len(y_label) > 2:
-                scoring = metrics.make_scorer(metrics.f1_score, labels = y_label, average = "weighted")
-            else:
-                scoring = metrics.make_scorer(metrics.f1_score)
-            print("v_measure_score  ", cross_val_score(clf, X, y, cv=10, scoring=scoring).mean())
+            # y_label = list(set(y))
+            # if len(y_label) > 2:
+            #     scoring = metrics.make_scorer(metrics.f1_score, labels = y_label, average = "weighted")
+            # else:
+            #     scoring = metrics.make_scorer(metrics.f1_score)
+            # print("v_measure_score  ", cross_val_score(clf, X, y, cv=10, scoring=scoring).mean())
 
 # def svc(X_dataframe, y_dataframe):
 #     print("SVC")
@@ -111,10 +126,24 @@ def knn(X_dataframe, y_dataframe):
             # Accuracy metric
             print("accuracy ", cross_val_score(clf, X, y, cv=10, scoring="accuracy").mean())
 
-            #f1 metric
-            y_label = list(set(y))
-            if len(y_label) > 2:
-                scoring = metrics.make_scorer(metrics.precision_score, labels = y_label, average = 'weighted')
-            else:
-                scoring = metrics.make_scorer(metrics.precision_score)
-            print("v_measure_score  ", cross_val_score(clf, X, y, cv=10, scoring=scoring).mean())
+            precision_score = 0
+            kf = KFold(n_splits=10)
+            for train_index, test_index in kf.split(X):
+                X_train, X_test = X[train_index], X[test_index]
+                y_train, y_test = y[train_index], y[test_index]
+                clf.fit(X_train, y_train)
+                y_pred = clf.predict(X_test)
+                y_label = list(set(y_test))
+                if len(y_label) > 2:
+                    precision_score += metrics.precision_score(y_test, y_pred, labels=y_label, average='micro')
+                else:
+                    precision_score += metrics.precision_score(y_test, y_pred)
+            print("precision_score", precision_score/10)
+
+            # #f1 metric
+            #
+            # if len(y_label) > 2:
+            #     scoring = metrics.make_scorer(metrics.precision_score, labels = y_label, average = 'weighted')
+            # else:
+            #     scoring = metrics.make_scorer(metrics.precision_score)
+            # print("v_measure_score  ", cross_val_score(clf, X, y, cv=10, scoring=scoring).mean())
