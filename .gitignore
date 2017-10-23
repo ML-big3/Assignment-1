@@ -1,3 +1,4 @@
 #ignore all the csv files
 *.csv
 *.pyc
+*.txt
