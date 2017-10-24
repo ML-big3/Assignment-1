@@ -8,8 +8,8 @@ import SVM
 import KNN
 
 
-#X, y = dataset.skinNoSkinDataset(config.SKIN_DATA_SET)
-X, y = dataset.susyDataset(config.SUSY_DATA_SET)
+X, y = dataset.skinNoSkinDataset(config.SKIN_DATA_SET)
+#X, y = dataset.susyDataset(config.SUSY_DATA_SET)
 
 
 LogisticRegression.logisticRegressionClassifier(X, y)

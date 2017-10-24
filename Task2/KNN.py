@@ -28,8 +28,10 @@ def knnClassifier(X, y):
     # Evaluating the performance using 10 fold cross validation
     evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "KNN")
     
-    evaluationMetric.crossValidateForAccuracy()
-    evaluationMetric.crossValidatePrecisionScore()
-    evaluationMetric.crossValidateLogLoss()
-    evaluationMetric.crossValidateAucRoc()
-    evaluationMetric.crossValidateConfusionMatrix()
+    evaluationMetric.traingTimer()
+    
+#    evaluationMetric.crossValidateForAccuracy()
+#    evaluationMetric.crossValidatePrecisionScore()
+#    evaluationMetric.crossValidateLogLoss()
+#    evaluationMetric.crossValidateAucRoc()
+#    evaluationMetric.crossValidateConfusionMatrix()

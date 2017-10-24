@@ -27,3 +27,5 @@ def svmClassifier(X, y):
     evaluationMetric.crossValidateLogLoss()
     evaluationMetric.crossValidateAucRoc()
     evaluationMetric.crossValidateConfusionMatrix()
+    evaluationMetric.traingTimer()
+    evaluationMetric.traingMemory()

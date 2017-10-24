@@ -12,6 +12,9 @@ from sklearn.metrics import log_loss
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_score
+import time
+import numpy as np
+from memory_profiler import memory_usage
 
 class EvaluationMetrics:
     
@@ -50,4 +53,24 @@ class EvaluationMetrics:
                    'fp' : make_scorer(fp), 'fn' : make_scorer(fn)}
         results = model_selection.cross_validate(self.classifier, self.X, self.y, cv=self.kfold, scoring=cm)
         print("Classifier "+self.classifier_name+" - Confusion Maxtrix: ", results)
+
+    def crossFoldTraing(self):
+        for train_index, test_index in self.kfold.split(self.X):
+            X_train = self.X[train_index]
+            y_train = np.array(self.y)[train_index]
+            self.classifier.fit(X_train, y_train)
+
+    def traingTimer(self):
+        t0 = time.time()
+        self.crossFoldTraing()
+        t1 = time.time()
+        print("Classifier "+self.classifier_name+" - TraingTime is: ", (t1-t0)/10)
+
+    def traingMemory(self):
+        usage = memory_usage((self.crossFoldTraing))
+        print("Classifier "+self.classifier_name+" - TraingMemory is: ", usage[-1]-usage[0])
+        
+
+
+
         
