@@ -20,7 +20,7 @@ def svmClassifier(X, y):
     classifier = SVC(kernel = 'linear', random_state = 0)
     
     # Evaluating the performance using 10 fold cross validation
-    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "KNN")
+    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "SVM")
     
     evaluationMetric.crossValidateForAccuracy()
     evaluationMetric.crossValidatePrecisionScore()
