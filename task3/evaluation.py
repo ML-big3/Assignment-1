@@ -60,15 +60,15 @@ class EvaluationMetrics:
             y_train = np.array(self.y)[train_index]
             self.classifier.fit(X_train, y_train)
 
-    def traingTimer(self):
+    def timeToTrain(self):
         t0 = time.time()
         self.crossFoldTraing()
         t1 = time.time()
-        print("Classifier "+self.classifier_name+" - TraingTime is: ", (t1-t0)/10)
+        print("Classifier "+self.classifier_name+" - timeToTrain is: ", (t1-t0)/10)
 
-    def traingMemory(self):
+    def trainingMemory(self):
         usage = memory_usage((self.crossFoldTraing))
-        print("Classifier "+self.classifier_name+" - TraingMemory is: ", usage[-1]-usage[0])
+        print("Classifier "+self.classifier_name+" - trainingMemory is: ", usage[-1]-usage[0])
         
 
 
