@@ -17,7 +17,12 @@ def train_sum_without_noise_data():
     X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 6',
                         'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']].values
     y = dataset['Target'].values
-    strat_training_split_dataset(X, y)
+    functions.linear_regression(X, y)
+    functions.decision_tree_regression(X, y)
+    y = dataset['Target Class'].values
+    y = pd.Series(y)
+    functions.logistic_regression_with_split_metrics(X, y)
+    functions.knn_with_split_metrics(X, y)
     
 
 # training the Sum With Noise dataset
@@ -55,6 +60,6 @@ def train_skin_data():
     functions.knn(X, y)
 
 train_sum_without_noise_data()
-train_sum_with_noise_data()
-train_skin_data()
-train_fashion_mnist_data()
+#train_sum_with_noise_data()
+#train_skin_data()
+#train_fashion_mnist_data()
