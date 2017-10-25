@@ -22,7 +22,7 @@ def logisticRegressionClassifier(X, y):
     classifier = LogisticRegression(random_state = 0)
     
     # Evaluating the performance using 10 fold cross validation
-    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "KNN")
+    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "LogisticRegression")
     
     evaluationMetric.crossValidateForAccuracy()
     evaluationMetric.crossValidatePrecisionScore()

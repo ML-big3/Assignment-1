@@ -10,6 +10,6 @@ CONFIGURATION FILE
 
 
 SKIN_DATA_SET = "Skin_NonSkin.txt"
-SUSY_DATA_SET = "SUSY1.csv"
+SUSY_DATA_SET = "SUSY.csv"
 
 

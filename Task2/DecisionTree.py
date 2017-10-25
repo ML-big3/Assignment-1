@@ -20,7 +20,7 @@ def decisionTreeClassifier(X, y) :
     classifier = DecisionTreeClassifier(criterion = 'entropy')    
     
     # Evaluating the performance using 10 fold cross validation
-    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "Decision Tree")
+    evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "DecisionTrees")
     
     evaluationMetric.crossValidateForAccuracy()
     evaluationMetric.crossValidatePrecisionScore()
