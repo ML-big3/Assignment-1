@@ -5,11 +5,7 @@ Created on Mon Oct 23 22:24:47 2017
 
 """
 
-import numpy as np
-import pandas as pd
-
 import evaluation
-
 
 from sklearn.tree import DecisionTreeClassifier
 
@@ -28,5 +24,6 @@ def decisionTreeClassifier(X, y) :
     evaluationMetric.crossValidateAucRoc()
     #evaluationMetric.crossValidateConfusionMatrix()
     evaluationMetric.crossValidateRecall()
+    evaluationMetric.crossValidateF1()
     evaluationMetric.timeToTrain()
     evaluationMetric.trainingMemory()

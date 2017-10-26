@@ -9,11 +9,6 @@ import evaluation
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 
-
-
-
-
-
 def knnClassifier(X, y):
     """
     KNN
@@ -34,5 +29,6 @@ def knnClassifier(X, y):
     evaluationMetric.crossValidateAucRoc()
     #evaluationMetric.crossValidateConfusionMatrix()
     evaluationMetric.crossValidateRecall()
+    evaluationMetric.crossValidateF1()
     evaluationMetric.timeToTrain()
     evaluationMetric.trainingMemory()
