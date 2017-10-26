@@ -59,6 +59,10 @@ class EvaluationMetrics:
     def crossValidateRecall(self):
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='recall')
         print("Classifier "+self.classifier_name+" - Recall Score: %.10f (%.10f)") % (results.mean(), results.std())
+    
+    def crossValidateF1(self):
+        results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='f1')
+        print("Classifier "+self.classifier_name+" - F1 Score: %.10f (%.10f)") % (results.mean(), results.std())
         
     
     def crossFoldTraining(self):
