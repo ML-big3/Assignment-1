@@ -26,4 +26,7 @@ def svmClassifier(X, y):
     evaluationMetric.crossValidatePrecisionScore()
     evaluationMetric.crossValidateLogLoss()
     evaluationMetric.crossValidateAucRoc()
-    evaluationMetric.crossValidateConfusionMatrix()
+    #evaluationMetric.crossValidateConfusionMatrix()
+    evaluationMetric.crossValidateRecall()
+    evaluationMetric.timeToTrain()
+    evaluationMetric.trainingMemory()

@@ -30,3 +30,5 @@ def logisticRegressionClassifier(X, y):
     evaluationMetric.crossValidateAucRoc()
     #evaluationMetric.crossValidateConfusionMatrix()
     evaluationMetric.crossValidateRecall()
+    evaluationMetric.timeToTrain()
+    evaluationMetric.trainingMemory()

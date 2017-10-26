@@ -6,12 +6,17 @@ Created on Mon Oct 23 23:09:37 2017
 Evaluation Metrics
 """
 
+import time
+import numpy as np
+from memory_profiler import memory_usage
+
 from sklearn import model_selection
 from sklearn.metrics import make_scorer
 from sklearn.metrics import log_loss
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_score
+
 
 class EvaluationMetrics:
     
@@ -54,4 +59,21 @@ class EvaluationMetrics:
     def crossValidateRecall(self):
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='recall')
         print("Classifier "+self.classifier_name+" - Recall Score: %.3f (%.3f)") % (results.mean(), results.std())
+        
+    
+    def crossFoldTraining(self):
+        for train_index, test_index in self.kfold.split(self.X):
+            X_train = self.X[train_index]
+            y_train = np.array(self.y)[train_index]
+            self.classifier.fit(X_train, y_train)
+
+    def timeToTrain(self):
+        t0 = time.time()
+        self.crossFoldTraining()
+        t1 = time.time()
+        print("Classifier "+self.classifier_name+" - timeToTrain is: ", (t1-t0)/10)
+
+    def trainingMemory(self):
+        usage = memory_usage((self.crossFoldTraining))
+        print("Classifier "+self.classifier_name+" - trainingMemory is: ", usage[-1]-usage[0])
     
