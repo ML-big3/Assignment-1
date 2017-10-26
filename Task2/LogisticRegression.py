@@ -28,4 +28,5 @@ def logisticRegressionClassifier(X, y):
     evaluationMetric.crossValidatePrecisionScore()
     evaluationMetric.crossValidateLogLoss()
     evaluationMetric.crossValidateAucRoc()
-    evaluationMetric.crossValidateConfusionMatrix()
+    #evaluationMetric.crossValidateConfusionMatrix()
+    evaluationMetric.crossValidateRecall()

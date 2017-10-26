@@ -50,4 +50,8 @@ class EvaluationMetrics:
                    'fp' : make_scorer(fp), 'fn' : make_scorer(fn)}
         results = model_selection.cross_validate(self.classifier, self.X, self.y, cv=self.kfold, scoring=cm)
         print("Classifier "+self.classifier_name+" - Confusion Maxtrix: ", results)
-        
+
+    def crossValidateRecall(self):
+        results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='recall')
+        print("Classifier "+self.classifier_name+" - Recall Score: %.3f (%.3f)") % (results.mean(), results.std())
+    
