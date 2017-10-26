@@ -29,22 +29,22 @@ class EvaluationMetrics:
         
     def crossValidateForAccuracy(self):
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='accuracy')
-        print("Classifier "+self.classifier_name+" - Accuracy: %.3f (%.3f)") % (results.mean(), results.std())
+        print("Classifier "+self.classifier_name+" - Accuracy: % (%)") % (results.mean(), results.std())
 
     def crossValidateLogLoss(self):
         scorer = make_scorer(log_loss)
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring=scorer)
-        print("Classifier "+self.classifier_name+" - LogLoss: %.3f (%.3f)") % (results.mean(), results.std())
+        print("Classifier "+self.classifier_name+" - LogLoss: % (%)") % (results.mean(), results.std())
 
     def crossValidateAucRoc(self):
         scorer = make_scorer(roc_auc_score)
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring=scorer)
-        print("Classifier "+self.classifier_name+" - Area Under ROC Curve: %.3f (%.3f)") % (results.mean(), results.std())        
+        print("Classifier "+self.classifier_name+" - Area Under ROC Curve: % (%") % (results.mean(), results.std())        
 
     def crossValidatePrecisionScore(self):
         scorer = make_scorer(precision_score)
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring=scorer)
-        print("Classifier "+self.classifier_name+" - Precision Score: %.3f (%.3f)") % (results.mean(), results.std())
+        print("Classifier "+self.classifier_name+" - Precision Score: % (%)") % (results.mean(), results.std())
     
     def crossValidateConfusionMatrix(self):
         def tp(y_true, y_pred): return confusion_matrix(y_true, y_pred)[0, 0]
@@ -58,7 +58,7 @@ class EvaluationMetrics:
 
     def crossValidateRecall(self):
         results = model_selection.cross_val_score(self.classifier, self.X, self.y, cv=self.kfold, scoring='recall')
-        print("Classifier "+self.classifier_name+" - Recall Score: %.3f (%.3f)") % (results.mean(), results.std())
+        print("Classifier "+self.classifier_name+" - Recall Score: % (%)") % (results.mean(), results.std())
         
     
     def crossFoldTraining(self):
