@@ -24,8 +24,6 @@ from sklearn.preprocessing import label_binarize
 def linear_regression(X_dataframe, y_dataframe):
     print("LinearRegression")
     for i in CHUNKS:
-        rmse = 0
-        r2 = 0
         if X_dataframe.shape[0] >= i or X_dataframe.shape[0] > 900000:
             X = X_dataframe[:i]
             y = y_dataframe[:i]
@@ -42,8 +40,6 @@ def linear_regression(X_dataframe, y_dataframe):
 def decision_tree_regression(X_dataframe, y_dataframe):
     print("Decision Tree Regression")
     for i in CHUNKS:
-        rmse = 0
-        r2 = 0
         if X_dataframe.shape[0] >= i or X_dataframe.shape[0] > 900000:
             X = X_dataframe[:i]
             y = y_dataframe[:i]
