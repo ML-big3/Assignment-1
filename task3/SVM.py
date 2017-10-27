@@ -1,18 +1,14 @@
-# Support Vector Machine (SVM)
+"""
+Created on Mon Oct 23 22:24:47 2017
 
-# Importing the libraries
-
-
-
+Support Vector Machines
+"""
 import evaluation
 from sklearn.preprocessing import StandardScaler
 from sklearn.svm import SVC
 
-def svmClassifier(X, y):
-    """
-    SVM
-    """
-    
+def svm_classifier(X, y):
+  
     # feature Scaling    
     sc_X = StandardScaler()
     X = sc_X.fit_transform(X)
@@ -22,12 +18,11 @@ def svmClassifier(X, y):
     # Evaluating the performance using 10 fold cross validation
     evaluationMetric = evaluation.EvaluationMetrics(classifier, X, y, 10, 7, "SVM")
     
-    evaluationMetric.crossValidateForAccuracy()
-    evaluationMetric.crossValidatePrecisionScore()
-    evaluationMetric.crossValidateLogLoss()
-    evaluationMetric.crossValidateAucRoc()
-    #evaluationMetric.crossValidateConfusionMatrix()
-    evaluationMetric.crossValidateRecall()
-    evaluationMetric.crossValidateF1()
-    evaluationMetric.timeToTrain()
-    evaluationMetric.trainingMemory()
+    evaluationMetric.cross_validate_for_accuracy()
+    evaluationMetric.cross_validate_precision_score()
+    evaluationMetric.cross_validate_logloss()
+    evaluationMetric.cross_validate_auc_roc()
+    #evaluationMetric.cross_validate_confusion_matrix()
+    evaluationMetric.cross_validate_recall()
+    evaluationMetric.cross_validate_f1()
+    evaluationMetric.time_to_train()

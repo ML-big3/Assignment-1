@@ -10,7 +10,7 @@ CONFIGURATION FILE
 
 
 SKIN_DATA_SET = "Skin_NonSkin.txt"
-SUSY_DATA_SET = "SUSY.csv"
+SUSY_DATA_SET = "D:\SUSY Data Set (Supersymmetric Particles)\SUSY.csv.gz"
 
-TEMPORARY_DIR = ""
+TEMPORARY_DIR = "D:\Temporary"
 

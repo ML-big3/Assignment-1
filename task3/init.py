@@ -8,11 +8,11 @@ import SVM
 import KNN
 
 
-X, y = dataset.skinNoSkinDataset(config.SKIN_DATA_SET)
-#X, y = dataset.susyDataset(config.SUSY_DATA_SET)
+X, y = dataset.skin_noskin_dataset(config.SKIN_DATA_SET)
+#X, y = dataset.susy_dataset(config.SUSY_DATA_SET)
 
 
-LogisticRegression.logisticRegressionClassifier(X, y)
-DecisionTree.decisionTreeClassifier(X, y)
-KNN.knnClassifier(X,y)
-SVM.svmClassifier(X, y)
+LogisticRegression.logistic_regression_classifier(X, y)
+DecisionTree.decision_tree_classifier(X, y)
+KNN.knn_classifier(X,y)
+SVM.svm_classifier(X, y)
