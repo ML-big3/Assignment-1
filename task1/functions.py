@@ -29,13 +29,15 @@ def linear_regression(X_dataframe, y_dataframe):
         if X_dataframe.shape[0] >= i or X_dataframe.shape[0] > 900000:
             X = X_dataframe[:i]
             y = y_dataframe[:i]
+            y_min = y.min()
+            y_max = y.max()
             regressor = LinearRegression()
             print(i)
             #RMSE metric
-            print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean()))
+            print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean())/(y_max-y_min))
 
             #R2 metric
-            print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
+            #print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
 
 def decision_tree_regression(X_dataframe, y_dataframe):
     print("Decision Tree Regression")
@@ -45,14 +47,16 @@ def decision_tree_regression(X_dataframe, y_dataframe):
         if X_dataframe.shape[0] >= i or X_dataframe.shape[0] > 900000:
             X = X_dataframe[:i]
             y = y_dataframe[:i]
+            y_min = y.min()
+            y_max = y.max()
             regressor = DecisionTreeRegressor(max_depth=5)
 
             print(i)
             #RMSE metric
-            print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean()))
+            print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean())/(y_max-y_min))
 
             #R2 metric
-            print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
+            #print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
 
 def logistic_regression(X_dataframe, y_dataframe):
     print("LogisticRegression")
