@@ -25,7 +25,6 @@ def logistic_regression_classifier(X, y):
     evaluationMetric.cross_validate_precision_score()
     evaluationMetric.cross_validate_logloss()
     evaluationMetric.cross_validate_auc_roc()
-    #evaluationMetric.cross_validate_confusion_matrix()
     evaluationMetric.cross_validate_recall()
     evaluationMetric.cross_validate_f1()
     evaluationMetric.time_to_train()
