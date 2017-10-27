@@ -2,13 +2,7 @@ import config
 import functions
 import pandas as pd
 from sklearn.utils import shuffle
-
-
-def strat_training_split_dataset(X, y):
-    functions.linear_regression(X, y)
-    functions.decision_tree_regression(X, y)
-    # functions.logistic_regression_with_split_metrics(X, y)
-    # functions.knn_with_split_metrics(X, y)
+import zipfile
 
 # training the Sum Without Noise dataset
 def train_sum_without_noise_data():
@@ -21,8 +15,8 @@ def train_sum_without_noise_data():
     functions.decision_tree_regression(X, y)
     y = dataset['Target Class'].values
     y = pd.Series(y)
-    # functions.logistic_regression_with_split_metrics(X, y)
-    # functions.knn_with_split_metrics(X, y)
+    functions.logistic_regression_with_split_metrics(X, y)
+    functions.knn_with_split_metrics(X, y)
     
 
 # training the Sum With Noise dataset
@@ -32,28 +26,33 @@ def train_sum_with_noise_data():
     X = dataset[['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4','Feature 5 (meaningless but please still use it)','Feature 6',
                         'Feature 7', 'Feature 8', 'Feature 9', 'Feature 10']].values
     y = dataset['Noisy Target'].values
-#    strat_training_split_dataset(X, y)
     functions.linear_regression(X, y)
     functions.decision_tree_regression(X, y)
     y = dataset['Noisy Target Class'].values
     y = pd.Series(y)
-#    print(y)
-    # functions.logistic_regression_with_split_metrics(X, y)
-    # functions.knn_with_split_metrics(X, y)
+    functions.logistic_regression_with_split_metrics(X, y)
+    functions.knn_with_split_metrics(X, y)
     
 
 
 # training the Fashion Mnist dataset
 def train_fashion_mnist_data():
     print("Fashion Mnist dataset")
-    data_train = pd.read_csv(config.FASHION_MNIST_TRAIN, sep=",")
+    with zipfile.ZipFile(config.FASHION_MNIST_TRAIN_ZIP,"r") as zip_ref:
+        zip_ref.extractall(config.FASHION_MNIST_TRAIN_FOLDER)
+    data_train = pd.read_csv(config.FASHION_MNIST_TRAIN_TRAIN, sep=",")
+
     features = []
     for i in range(1, 785):
         features.append("pixel" + str(i))
 
     X = data_train[features].values
     y = data_train["label"].values
-    strat_training_split_dataset(X, y)
+    functions.linear_regression(X, y)
+    functions.decision_tree_regression(X, y)
+    functions.logistic_regression_with_split_metrics(X, y)
+    functions.knn_with_split_metrics(X, y)
+
 
 # training the Skin_Non_Skin dataset
 def train_skin_data():
@@ -64,8 +63,8 @@ def train_skin_data():
     X, y = shuffle(X, y)
     functions.linear_regression(X, y)
     functions.decision_tree_regression(X, y)
-    # functions.logistic_regression(X, y)
-    # functions.knn(X, y)
+    functions.logistic_regression(X, y)
+    functions.knn(X, y)
 
 train_sum_without_noise_data()
 train_sum_with_noise_data()

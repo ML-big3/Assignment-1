@@ -7,7 +7,6 @@ Created on Fri Oct  7 14:34:27 2017
 
 #Assignment-1 Task-1
 """
-# CHUNKS = [100, 500, 1000, 5000, 10000]
 CHUNKS = [100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000]
 import numpy as np
 from sklearn import svm
@@ -20,6 +19,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.cross_validation import train_test_split
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import label_binarize
+
 # Linear Regression Algorithm
 def linear_regression(X_dataframe, y_dataframe):
     print("LinearRegression")
@@ -37,7 +37,7 @@ def linear_regression(X_dataframe, y_dataframe):
             print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean())/(y_max-y_min))
 
             #R2 metric
-            #print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
+            print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
 
 def decision_tree_regression(X_dataframe, y_dataframe):
     print("Decision Tree Regression")
@@ -52,11 +52,11 @@ def decision_tree_regression(X_dataframe, y_dataframe):
             regressor = DecisionTreeRegressor(max_depth=5)
 
             print(i)
-            #RMSE metric
+            # RMSE metric
             print("RMSE", np.sqrt(-cross_val_score(regressor, X, y, cv=10, scoring="neg_mean_squared_error").mean())/(y_max-y_min))
 
-            #R2 metric
-            #print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
+            # R2 metric
+            print("R2  ", cross_val_score(regressor, X, y, cv=10, scoring="r2").mean())
 
 def logistic_regression(X_dataframe, y_dataframe):
     print("LogisticRegression")
@@ -67,20 +67,12 @@ def logistic_regression(X_dataframe, y_dataframe):
             clf = LogisticRegression()
             
             print(i)
+
             #Accuracy metric
             print("accuracy ", cross_val_score(clf, X, y, cv=10, scoring="accuracy").mean())
 
             #f1 score
             print("f1 ", cross_val_score(clf, X, y, cv=10, scoring="f1").mean())
-
-
-            #f1 metric
-            # y_label = list(set(y))
-            # if len(y_label) > 2:
-            #     scoring = metrics.make_scorer(metrics.f1_score, labels = y_label, average = "weighted")
-            # else:
-            #     scoring = metrics.make_scorer(metrics.f1_score)
-            # print("v_measure_score  ", cross_val_score(clf, X, y, cv=10, scoring=scoring).mean())
 
 def logistic_regression_with_split_metrics(X_dataframe, y_dataframe):
     print("logistic_regression")
@@ -90,6 +82,7 @@ def logistic_regression_with_split_metrics(X_dataframe, y_dataframe):
             clf = LogisticRegression()
             clf.fit(X_train, y_train)
             print(i)
+
             #Accuracy metric            
             print("accuracy", clf.score(X_test, y_test))
 
@@ -106,6 +99,7 @@ def knn(X_dataframe, y_dataframe):
             y = y_dataframe[:i]
             clf = KNeighborsClassifier(10, weights="uniform")
             print(i)
+
             # Accuracy metric
             print("accuracy ", cross_val_score(clf, X, y, cv=10, scoring="accuracy").mean())
 
@@ -120,6 +114,7 @@ def knn_with_split_metrics(X_dataframe, y_dataframe):
             clf = KNeighborsClassifier(10, weights="uniform")
             clf.fit(X_train, y_train)
             print(i)
+
             #Accuracy metric
             print("accuracy", clf.score(X_test, y_test))
 
